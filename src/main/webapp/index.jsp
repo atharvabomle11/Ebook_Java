@@ -28,11 +28,11 @@
 		<h2 class="text-center text-danger">EBook Management System</h2>
 	</div>
 
-<%
+<%-- <%
    Connection conn = DBConnect.getConn();
    out.println(conn);
 %>
-
+ --%>
  <!-- Start recent book -->
 	<div class="container">
     <h3 class="text-center">Recent Book</h3>

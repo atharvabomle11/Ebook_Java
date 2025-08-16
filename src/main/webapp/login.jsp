@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="all_components/allCss.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body style="overflow-y: hidden;">
 	<%@ include file="all_components/navbar.jsp"%>
@@ -20,22 +21,28 @@
 					style="font-size: 2rem; color: #0d6efd;"></i>
 				<h3 class="mt-2">Login</h3>
 			</div>
-			<form action="index.jsp" method="post">
+			
+			<c:if test="${not empty failMsg}">
+					<div class="alert alert-danger text-center">${failMsg}</div>
+					<c:remove var="failMsg" scope="session" />
+			</c:if>
+
+			<form action="login" method="post">
 				<div class="mb-3">
 					<label class="form-label">Email address</label>
 					<div class="input-group">
 						<span class="input-group-text"><i
-							class="bi bi-envelope-fill"></i></span> <input type="email"
-							class="form-control" name="email" placeholder="Enter email"
-							required>
+							class="bi bi-envelope-fill"></i></span> 
+							<input type="email"
+							class="form-control" name="email" placeholder="Enter email" name="email" required >
 					</div>
 				</div>
 				<div class="mb-3">
 					<label class="form-label">Password</label>
 					<div class="input-group">
 						<span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-						<input type="password" class="form-control" name="password"
-							placeholder="Enter password" required>
+						<input type="password" class="form-control" 
+							placeholder="Enter password" name="pass" required>
 					</div>
 				</div>
 				<div class="d-grid">
