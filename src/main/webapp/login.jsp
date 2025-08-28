@@ -22,6 +22,11 @@
 				<h3 class="mt-2">Login</h3>
 			</div>
 			
+			<c:if test="${not empty succMsg}">
+					<div class="alert alert-success text-center">${succMsg}</div>
+					<c:remove var="succMsg" scope="session" />
+			</c:if>
+			
 			<c:if test="${not empty failMsg}">
 					<div class="alert alert-danger text-center">${failMsg}</div>
 					<c:remove var="failMsg" scope="session" />

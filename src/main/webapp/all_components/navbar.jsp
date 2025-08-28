@@ -1,4 +1,5 @@
 <!-- Font Awesome CDN -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 	rel="stylesheet">
@@ -18,24 +19,42 @@
 
 		<!-- Search -->
 		<div class="col-md-5">
-			<form class="d-flex">
+			<form class="d-flex" action="search.jsp">
 				<input class="form-control rounded-pill me-2 shadow-sm"
-					type="search" placeholder="Search eBooks..." aria-label="Search">
+					type="search" placeholder="Search eBooks..." aria-label="Search" name="ch">
 				<button class="btn btn-primary rounded-pill shadow-sm px-5"
-					type="submit">Search</button>
+					type="submit" >Search</button>
 			</form>
 		</div>
 
 		<!-- Login & Register -->
-		<div class="col-md-4 text-end">
-			<a href="login.jsp"
-				class="btn btn-outline-primary rounded-pill shadow-sm me-2 px-4">
-				<i class="fas fa-user"></i> Login
-			</a> <a href="register.jsp"
-				class="btn btn-success rounded-pill shadow-sm px-4"> <i
-				class="fas fa-sign-in-alt"></i> Register
-			</a>
-		</div>
+		<c:if test="${not empty userObj }">
+			<div class="col-md-4 text-end">
+
+				<a href="login.jsp"
+					class="btn btn-outline-primary rounded-pill shadow-sm me-2 px-4">
+					<i class="fas fa-user"></i> ${userObj.name }
+				</a> <a href="logout"
+					class="btn btn-success rounded-pill shadow-sm px-4"> <i
+					class="fas fa-sign-in-alt"></i> Log Out
+				</a>
+				<a href="checkout.jsp"><i class="fa-solid fa-cart-plus fa-2x"></i></a>
+			</div>
+
+		</c:if>
+
+		<c:if test="${empty userObj }">
+			<div class="col-md-4 text-end">
+				<a href="login.jsp"
+					class="btn btn-outline-primary rounded-pill shadow-sm me-2 px-4">
+					<i class="fas fa-user"></i> Login
+				</a> <a href="register.jsp"
+					class="btn btn-success rounded-pill shadow-sm px-4"> <i
+					class="fas fa-sign-in-alt"></i> Register
+				</a>
+			</div>
+		</c:if>
+
 
 	</div>
 </div>
@@ -45,7 +64,8 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-custom ">
-	<a class="navbar-brand" href="#"><i class="fa-solid fa-house"></i></a>
+	<a class="navbar-brand text-white nav-link" href="index.jsp"><i
+		class="fa-solid fa-house"></i></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -55,23 +75,22 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="#"> <span
-					class="sr-only">(current)</span>
-			</a></li>
+			<li class="nav-item active"><a class="nav-link" href="#"><span
+					class="sr-only">(current)</span> </a></li>
 			<li class="nav-item active"><a class="nav-link text-white"
-				href="#"><i class="fa-solid fa-book-open"
+				href="all_recent_books.jsp"><i class="fa-solid fa-book-open"
 					style="margin-right: 5px"></i>Recent Book</a></li>
 			<li class="nav-item active"><a class="nav-link text-white"
-				href="#"><i class="fa-solid fa-book-open"
+				href="all_new_books.jsp"><i class="fa-solid fa-book-open"
 					style="margin-right: 5px"></i>New Book</a></li>
 			<li class="nav-item active"><a class="nav-link text-white"
-				href="#"><i class="fa-solid fa-book-open"
+				href="all_old_books.jsp"><i class="fa-solid fa-book-open"
 					style="margin-right: 5px"></i>Old Book</a></li>
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
-			<button class="btn my-2 my-sm-0 me-2" type="submit"
+			<a href="settings.jsp" class="btn my-2 my-sm-0 me-2" type="submit"
 				style="background-color: white; border: 1px solid black; margin-right: 10px">
-				Settings</button>
+				Settings</a>
 			<button class="btn my-2 my-sm-0" type="submit"
 				style="background-color: white; border: 1px solid black; margin-right: 10px">
 				Contact Us</button>

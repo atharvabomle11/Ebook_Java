@@ -68,6 +68,9 @@
 <body>
 
 <%@ include file="navbar.jsp" %>
+<c:if test="${empty userObj }">
+		<c:redirect url="../login.jsp" />
+	</c:if>
 <main>
 
 <div class="container">
